@@ -5,8 +5,8 @@ Definition of the Storage class
 
 import json
 import os
-# from Model.Base_Model import BaseModel
-from Model.User import User
+from Model.Base_Model import Model
+from Model.user import User
 
 class Storage:
     """
