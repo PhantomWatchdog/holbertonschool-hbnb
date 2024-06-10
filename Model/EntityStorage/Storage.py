@@ -4,7 +4,7 @@ Definition of the Storage class
 """
 
 import json
-import os
+from datetime import datetime
 from Model.Base_Model import Model
 from Model.user import User
 
@@ -43,10 +43,14 @@ class Storage:
         """
         Deserialize the JSON file (path: __file_path) to __objects
         """
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, "r") as file:
-                dict = json.load(file)
-            for key, value in dict.items():
-                cls = Model.__dict__[value["__class__"]]
-                obj = cls(**value)
-                self.__objects[key] = obj
+        try:
+            with open(self.__file_path, "r", encoding="utf-8") as jsonfile:
+                json_dict = json.load(jsonfile)
+                for key, value in json_dict.items():
+                    value['created_at'] = datetime.strptime(value['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                    value['updated_at'] = datetime.strptime(value['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                    obj_class = eval(key.split(".")[0])
+                    obj_instance = obj_class(**value)
+                    self.__objects[key] = obj_instance
+        except FileNotFoundError:
+            pass
