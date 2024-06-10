@@ -16,10 +16,16 @@ class BaseModel:
         """
         Constructor
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        self.__dict__.update(kwargs)
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
+                setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            self.__dict__.update(kwargs)
 
     def save(self):
         """
