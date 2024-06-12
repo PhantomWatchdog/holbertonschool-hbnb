@@ -4,9 +4,13 @@ Definition of the Storage class
 """
 
 import json
-from datetime import datetime
 from Model.Base_Model import Model
-from Model.user import User
+from Model.User import User
+from Model.Country import Country
+from Model.City import City
+from Model.Place import Place
+from Model.Review import Review
+from Model.Amenitie import Amenity
 
 class Storage:
     """
@@ -20,37 +24,34 @@ class Storage:
         """
         Return the dictionary __objects
         """
-        return self.__objects
+        return Storage.__objects
 
     def new(self, obj):
         """
         Set in __objects the obj with key <obj class name>.id
         """
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        objclsname = obj.__class__.__name__
+        Storage.__objects["{}.{}".format(objclsname, obj.id)] = obj
 
     def save(self):
         """
         Serialize __objects to the JSON file (path: __file_path)
         """
-        dict = {}
-        for key, value in self.__objects.items():
-            dict[key] = value.to_dict()
-        with open(self.__file_path, "w") as file:
-            json.dump(dict, file)
+        serialdict = Storage.__objects
+        objectsdict = {obj: serialdict[obj].to_dict() for obj in serialdict.keys()}
+        with open(Storage.__file_path, "w") as jfile:
+            json.dump(objectsdict, jfile)
 
     def reload(self):
         """
         Deserialize the JSON file (path: __file_path) to __objects
         """
         try:
-            with open(self.__file_path, "r", encoding="utf-8") as jsonfile:
-                json_dict = json.load(jsonfile)
-                for key, value in json_dict.items():
-                    value['created_at'] = datetime.strptime(value['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-                    value['updated_at'] = datetime.strptime(value['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
-                    obj_class = eval(key.split(".")[0])
-                    obj_instance = obj_class(**value)
-                    self.__objects[key] = obj_instance
+            with open(Storage.__file_path, "r") as jfile:
+                objectsdict = json.load(jfile)
+                for oo in objectsdict.values():
+                    cls_name = oo["__class__"]
+                    del oo["__class__"]
+                    self.new(eval(cls_name)(**oo))
         except FileNotFoundError:
-            pass
+            return
