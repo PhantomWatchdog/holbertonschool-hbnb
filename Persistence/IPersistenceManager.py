@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 
 from abc import ABC, abstractmethod
 
@@ -9,16 +8,16 @@ class IPersistenceManager(ABC):
         pass
 
     @abstractmethod
-    def get(self, entity_id):
+    def get(self, entity_id, entity_type):
         """Retrieve an entity from the storage by its ID."""
         pass
 
     @abstractmethod
-    def update(self, entity_id, new_data):
+    def update(self, entity):
         """Update an existing entity in the storage."""
         pass
 
     @abstractmethod
-    def delete(self, entity_id):
+    def delete(self, entity_id, entity_type):
         """Delete an entity from the storage by its ID."""
         pass
