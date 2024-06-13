@@ -4,7 +4,7 @@ Definition of the Storage class
 """
 
 import json
-from Model.Base_Model import Model
+from Model.Base_Model import BaseModel
 from Model.User import User
 from Model.Country import Country
 from Model.City import City
