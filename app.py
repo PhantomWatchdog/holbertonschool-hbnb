@@ -5,25 +5,25 @@ from Persistence.DataManager import DataManager
 import uuid
 
 app = Flask(__name__)
-api = Api(app, version='1.0', title='HBnB API', description='HBnB Evolution API')
+api = Api(app, version='0.1', title='HBnB API Test version')
 
 data_manager = DataManager()
 
-ns = api.namespace('users', description='User operations')
+ns = api.namespace('Users Actions')
 
-user_model = api.model('User', {
-    'email': fields.String(required=True, description='User email'),
-    'first_name': fields.String(required=True, description='User first name'),
-    'last_name': fields.String(required=True, description='User last name'),
+user_model = api.model('User Attributs', {
+    'email': fields.String(required=True),
+    'first_name': fields.String(required=True),
+    'last_name': fields.String(required=True),
 })
 
-user_response_model = api.model('UserResponse', {
-    'user_id': fields.String(description='User ID'),
-    'email': fields.String(description='User email'),
-    'first_name': fields.String(description='User first name'),
-    'last_name': fields.String(description='User last name'),
-    'created_at': fields.DateTime(description='Creation time'),
-    'updated_at': fields.DateTime(description='Last update time'),
+user_response_model = api.model('User Request Response', {
+    'user_id': fields.String,
+    'email': fields.String,
+    'first_name': fields.String,
+    'last_name': fields.String,
+    'created_at': fields.DateTime,
+    'updated_at': fields.DateTime
 })
 
 @ns.route('/')
