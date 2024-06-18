@@ -1,36 +1,38 @@
-#!/usr/bin/python3
 """
 Place module
 """
 
-from Model.Base_Model import BaseModel
+import uuid
+from datetime import datetime
 
 
-class Place(BaseModel):
+class Place:
     """
-    Place class represents a place object.
+    Represents a place object.
 
     Attributes:
-        city_id (str): The ID of the city.
-        user_id (str): The ID of the user.
+        place_id (uuid.UUID): The unique identifier for the place.
         name (str): The name of the place.
         description (str): The description of the place.
-        number_rooms (int): The number of rooms in the place.
-        number_bathrooms (int): The number of bathrooms in the place.
-        max_guest (int): The maximum guests allowed in the place.
-        price_by_night (int): The price per night.
-        latitude (float): The latitude of the place.
-        longitude (float): The longitude of the place.
-        amenity_ids (list): IDs of amenities available in the place.
+        price (float): The price of the place.
+        location (str): The location of the place.
+        city_id (str): The ID of the city where the place is located.
+        host_id (str): The ID of the host who owns the place.
+        created_at (datetime): The date and time when the place was created.
+        updated_at (datetime): The date and time when the place was last updated.
+        amenities (list): The list of amenities available in the place.
+        reviews (list): The list of reviews for the place.
     """
-    city_id = ""
-    user_id = ""
-    name = ""
-    description = ""
-    number_rooms = 0
-    number_bathrooms = 0
-    max_guest = 0
-    price_by_night = 0
-    latitude = 0.0
-    longitude = 0.0
-    amenity_ids = []
+
+    def __init__(self, name, description, price, location, city_id, host_id):
+        self.place_id = uuid.uuid4()
+        self.name = name
+        self.description = description
+        self.price = price
+        self.location = location
+        self.city_id = city_id
+        self.host_id = host_id
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.amenities = []
+        self.reviews = []
