@@ -1,10 +1,10 @@
-from IPersistenceManager import IPersistenceManager
+from Persistence.IPersistenceManager import IPersistenceManager
 from Model.User import User
-from Model.place import Place
-from Model.review import Review
-from Model.amenity import Amenity
-from Model.country import Country
-from Model.city import City
+from Model.Place import Place
+from Model.Review import Review
+from Model.Amenity import Amenity
+from Model.Country import Country
+from Model.City import City
 
 class DataManager(IPersistenceManager):
     def __init__(self):

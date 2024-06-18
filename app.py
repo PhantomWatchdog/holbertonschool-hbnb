@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
-from models.user import User
-from persistence.data_manager import DataManager
+from Model.User import User
+from Persistence.DataManager import DataManager
 import uuid
 
 app = Flask(__name__)
