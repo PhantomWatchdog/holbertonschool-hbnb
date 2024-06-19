@@ -31,6 +31,5 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(model_dict['updated_at'], self.model.updated_at)
         self.assertIsInstance(model_dict, dict)
 
-
 if __name__ == '__main__':
     unittest.main()

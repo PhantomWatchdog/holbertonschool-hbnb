@@ -41,6 +41,5 @@ class TestUserInit(unittest.TestCase):
         self.assertEqual(user_dict['updated_at'], user.updated_at.isoformat())
         self.assertEqual(user_dict['__class__'], 'User')
 
-
 if __name__ == '__main__':
     unittest.main()

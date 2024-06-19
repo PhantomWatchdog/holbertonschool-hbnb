@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+
+import unittest
+from datetime import datetime
+from Class.city import City
+
+
+class TestCity(unittest.TestCase):
+    def setUp(self):
+        self.city = City()
+
+    def test_init(self):
+        self.assertIsInstance(self.city.id, str)
+        self.assertIsInstance(self.city.created_at, datetime)
+        self.assertIsInstance(self.city.updated_at, datetime)
+        self.assertEqual(self.city.name, "")
+        self.assertEqual(self.city.country, "")
+        self.assertEqual(self.city.city, "")
+        self.assertEqual(self.city.created_at, self.city.updated_at)
+
+if __name__ == '__main__':
+    unittest.main()

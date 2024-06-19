@@ -1,0 +1,36 @@
+{
+    "1a2b3c4d-1234-5678-9abc-9876543210ab_Place": {
+        "id": "1a2b3c4d-1234-5678-9abc-9876543210ab",
+        "created_at": "2024-06-19T12:00:00",
+        "updated_at": "2024-06-19T12:00:00",
+        "place_id": "",
+        "name": "",
+        "description": "",
+        "nb_rooms": 0,
+        "nb_bathrooms": 0,
+        "city_id": "",
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "max_guests": 0,
+        "price_per_night": 0,
+        "amenitie": [],
+        "user_id": ""
+    },
+    "2b3c4d5e-2345-6789-0abc-876543210cba_Place": {
+        "id": "2b3c4d5e-2345-6789-0abc-876543210cba",
+        "created_at": "2024-06-19T12:00:00",
+        "updated_at": "2024-06-19T12:00:00",
+        "place_id": "",
+        "name": "",
+        "description": "",
+        "nb_rooms": 0,
+        "nb_bathrooms": 0,
+        "city_id": "",
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "max_guests": 0,
+        "price_per_night": 0,
+        "amenitie": [],
+        "user_id": ""
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "d30e3d68-24f6-48e6-9627-88e4925f6014_User": {
+        "id": "d30e3d68-24f6-48e6-9627-88e4925f6014",
+        "created_at": "2024-06-13T10:04:53.824622",
+        "updated_at": "2024-06-13T10:04:53.824628",
+        "first_name": "Test",
+        "last_name": "User1",
+        "password": "testpassword1",
+        "mail": "test.user1@example.com"
+    },
+    "0e69c2d6-9f2f-41d4-bb8e-5678e1b73b56_User": {
+        "id": "0e69c2d6-9f2f-41d4-bb8e-5678e1b73b56",
+        "created_at": "2024-06-13T10:04:53.824622",
+        "updated_at": "2024-06-13T10:04:53.824628",
+        "first_name": "Test",
+        "last_name": "User2",
+        "password": "testpassword2",
+        "mail": "test.user2@example.com"
+    }
+}
