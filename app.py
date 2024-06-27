@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 from flask_sqlalchemy import SQLAlchemy  # Étape 1: Importer SQLAlchemy
 from Model.User import User
-from Persistence.DataManager import DataManager
+from Persistence.DataManager import ConcreteDataManager
 import uuid
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ db = SQLAlchemy(app)  # Étape 3: Initialiser SQLAlchemy avec l'application Flas
 
 api = Api(app, version='0.1', title='HBnB API Test version')
 
-data_manager = DataManager()
+data_manager = ConcreteDataManager()
 
 ns = api.namespace('Users Actions')
 

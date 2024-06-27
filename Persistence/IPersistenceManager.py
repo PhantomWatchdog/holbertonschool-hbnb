@@ -1,7 +1,7 @@
 
 from abc import ABC, abstractmethod
 
-class IPersistenceManager(ABC):
+class DataManager(ABC):
     @abstractmethod
     def save(self, entity):
         pass
