@@ -1,30 +1,24 @@
-"""
-Review module
-"""
-
-
-import uuid
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import uuid
 
-class Review:
+db = SQLAlchemy()
+
+class Review(db.Model):
     """
     Represents a review for a place.
-
-    Attributes:
-        review_id (uuid.UUID): The unique identifier for the review.
-        user_id (str): The ID of the user who made the review.
-        place_id (str): The ID of the place being reviewed.
-        rating (int): The rating given to the place.
-        comment (str): The comment provided by the user.
-        created_at (datetime.datetime): The timestamp when the review was created.
-        updated_at (datetime.datetime): The timestamp when the review was last updated.
     """
+    review_id = db.Column(db.String(36), primary_key=True)
+    user_id = db.Column(db.String(36), db.ForeignKey('user.user_id'), nullable=False)
+    place_id = db.Column(db.String(36), db.ForeignKey('place.place_id'), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     def __init__(self, user_id, place_id, rating, comment):
-        self.review_id = uuid.uuid4()
+        self.review_id = str(uuid.uuid4())
         self.user_id = user_id
         self.place_id = place_id
         self.rating = rating
         self.comment = comment
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()

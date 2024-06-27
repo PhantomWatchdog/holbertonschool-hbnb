@@ -1,28 +1,18 @@
-"""
-City module
-"""
-
-import uuid
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import uuid
 
+db = SQLAlchemy()
 
-class City:
-    """
-    Represents a city.
-
-    Attributes:
-        city_id (uuid.UUID): The unique identifier for the city.
-        name (str): The name of the city.
-        country_id (str): The identifier of the country the city belongs to.
-        created_at (datetime): The date and time when the city was created.
-        updated_at (datetime): The date and time when the city was last updated.
-        places (list): A list of places associated with the city.
-    """
+class City(db.Model):
+    __tablename__ = 'cities'
+    city_id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    name = db.Column(db.String(128), nullable=False)
+    country_id = db.Column(db.String(36), db.ForeignKey('countries.country_id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    places = db.relationship('Place', backref='city', lazy=True)
 
     def __init__(self, name, country_id):
-        self.city_id = uuid.uuid4()
         self.name = name
         self.country_id = country_id
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        self.places = []

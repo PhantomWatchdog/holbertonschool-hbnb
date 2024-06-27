@@ -1,24 +1,16 @@
-"""
-Amenity module
-"""
-
-import uuid
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import uuid
 
+db = SQLAlchemy()
 
-class Amenity:
-    """
-    Represents an amenity.
-
-    Attributes:
-        amenity_id (uuid.UUID): The unique identifier for the amenity.
-        name (str): The name of the amenity.
-        created_at (datetime.datetime): The date and time when the amenity was created.
-        updated_at (datetime.datetime): The date and time when the amenity was last updated.
-    """
+class Amenity(db.Model):
+    __tablename__ = 'amenities'
+    amenity_id = db.Column(db.String(36), primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     def __init__(self, name):
-        self.amenity_id = uuid.uuid4()
+        self.amenity_id = str(uuid.uuid4())
         self.name = name
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()

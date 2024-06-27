@@ -1,2 +1,4 @@
 flask
 flask-restx
+SQLAlchemy==1.4.27
+Flask-SQLAlchemy==2.5.1
